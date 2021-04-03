@@ -84,7 +84,12 @@
               </div>
               <div class="deadline column">
                 <span>Prazo</span>
-                <p><%= job.remaining %> <%= Number(job.remaining) === 1 ? "dia" : "dias" %> para a entrega</p>
+                <p>
+              <% if (job.status === 'progress'){ %>
+                <%= job.remaining %> <%= Number(job.remaining) === 1 ? "dia" : "dias" %> para a entrega</p>
+                <% } else { %>
+                  Prazo encerrado
+              <% } %>
               </div>
               <div class="amount column">
                 <span>Valor</span>
@@ -96,7 +101,7 @@
               <div class="actions column flex">
                 <p class="sr-only">Ações</p>
                 <a 
-                  href="job/edit" 
+                  href="/job/<%= job.id %>" 
                   class="button white edit" 
                   title="Editar Job">
                   <img src="/images/edit-24.svg" alt="Editar Job" />
